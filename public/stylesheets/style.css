@@ -101,3 +101,50 @@ border-width: 5px;
 border-style: solid;
 }
 
+.contacto{
+ background-image: url('../images/og.png');
+border-width: 5px;
+background-repeat: no-repeat;
+position:absolute;
+padding: 20px;
+margin-top: 20px;
+margin-left: 40px;
+border-style: inset;
+border-width: 5px;
+border-color: #947651;
+}
+
+#email{
+  position: absolute;
+  top: 24%;
+  border-style: inset;
+  border-width: 3px;
+ border-color: #947651;
+
+}
+#name{
+  position: absolute;
+  top: 50%;
+  border-style: inset;
+  border-width: 3px;
+ border-color: #947651;
+
+  
+}
+
+#comnet{
+  margin-top:10px;
+  margin-left: 200px;
+  border-style: inset;
+  border-width: 3px;
+ border-color: #947651;
+}
+
+div h3.let{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+
+
+
