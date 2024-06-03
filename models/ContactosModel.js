@@ -12,8 +12,7 @@ class ContactosModel {
       console.log("Conectado a la base de datos SQLite.");
     });
 
-    this.db.run(
-      "CREATE TABLE IF NOT EXISTS contactos (email TEXT, nombre TEXT, mensaje TEXT, ip TEXT, fecha TEXT, id INTEGER PRIMARY KEY AUTOINCREMENT)",
+    this.db.run("CREATE TABLE IF NOT EXISTS contactos (email TEXT, name TEXT, mensaje TEXT, ip TEXT, fecha TEXT, pais TEXT, id INTEGER PRIMARY KEY AUTOINCREMENT)",
       (err) => {
         if (err) {
           console.error(err.message);
@@ -22,19 +21,23 @@ class ContactosModel {
     );
   }
 
-  crearContacto(email, nombre, mensaje, ip, fecha) {
+  crearContacto(email, name, mensaje, ip, fecha, pais) {
     return new Promise((resolve, reject) => {
-      const sql = `INSERT INTO contactos (email, nombre, mensaje, ip, fecha) VALUES (?, ?, ?, ?, ?)`;
-      this.db.run(sql, [email, nombre, mensaje, ip, fecha], function (err) {
+      const sql = `INSERT INTO contactos (name, email, mensaje, ip, fecha, pais) VALUES (?, ?, ?, ?, ?, ?)`;
+      const self = this; // Captura el valor de 'this' en una variable 'self'
+  
+      this.db.run(sql, [email, name, mensaje, ip, fecha, pais], function (err) {
         if (err) {
           console.error(err.message);
           reject(err);
+        } else {
+          console.log(`Se ha insertado una fila con el ID ${this.lastID}`); // Usa 'self' en lugar de 'this'
+          resolve(this.lastID);
         }
-        console.log(`Se ha insertado una fila con el ID ${this.lastID}`);
-        resolve(this.lastID);
       });
     });
   }
+
 
   async obtenerContacto(email) {
     const sql = `SELECT * FROM contactos WHERE email = ?`;

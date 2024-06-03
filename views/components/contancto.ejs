@@ -14,24 +14,37 @@
         rows="10"
         placeholder="comentario"
       ></textarea>
-      <input  type="submit" value="enviar" />
+     <form method="post" >
+        <div class="g-recaptcha" data-sitekey="6LfZWu8pAAAAAPAAmUi_TbadMzXIEgNWd0SvHglW" data-callback="verifyCaptcha"></div>
+        <div id="g-recaptcha-error"></div>
+        <input type="submit" name="submit" value="Submit" />
     </form>
-  </div>
+      
+   
+   
+   
+  </form>
   
-  <script>
-  document.getElementById('submit-btn').addEventListener('click', async () => {
-    const form = document.getElementById('contacto-form');
-    const formData = new FormData(form);
-  
-    const response = await fetch('/form-contacto', {
-      method: 'POST',
-      body: formData,
-    });
-  
-    if (response.ok) {
-      console.log('Formulario enviado con éxito');
-    } else {
-      console.error('Error al enviar el formulario');
+
+ 
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+      
+       <script>
+    function submitUserForm() {
+        var response = grecaptcha.getResponse();
+        if(response.length == 0) {
+            document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">This field is required.</span>';
+            return false;
+        }
+        return true;
     }
-  });
-  </script>
+     
+    function verifyCaptcha() {
+        document.getElementById('g-recaptcha-error').innerHTML = '';
+    }
+    </script>
+
+
+</div>
+
+ 
