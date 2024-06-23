@@ -11,6 +11,7 @@ class ContactosController {
   constructor(){
       this.contactosModel = new ContactosModel();
       this.add = this.add.bind(this);
+      this.list = this.list.bind(this);
       this.transporter = nodemailer.createTransport({
         service : 'gmail',
         auth : {
@@ -21,7 +22,7 @@ class ContactosController {
   }
 
      
-  enviarCorreo(name, email, mensaje, USER_EMAIL, USER_DESTINO1){
+  enviarCorreo(name, email, mensaje, USER_EMAIL, USER_DESTINO1,USER_DESTINO2){
     const mailOptions = {
       from : USER_EMAIL,
       to : [email, USER_DESTINO1,USER_DESTINO2],
@@ -103,6 +104,21 @@ if (!name || !email || !mensaje) {
   res.send("Respoda el reCAPTCHA");
 }
 }
+
+async list(req, res) {
+  try {
+    console.log('ContactosModel en list:', this.contactosModel); // Verificar inicialización
+    const contactos = await this.contactosModel.obtenerAllContactos();
+    res.render('Contactos', { contactos });
+  } catch (error) {
+    console.error("Error al listar los Contactos:", error);
+    res.status(500).render('error', { mensaje: 'Error al listar los contactos' });
+  }
+}
+
+
+
+
 }
 
 module.exports = ContactosController;

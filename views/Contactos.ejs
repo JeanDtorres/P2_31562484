@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="witd/tdh=device-witd/tdh, initial-scale=1.0">
+    <title>data base</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body style="text-align: center;">
+    
+
+<h1 class="frodo">Tabla de Usuarios Registrados</h1>
+    <table   class="title-contactos" align="center" border="1" bgcolor=" #947651" cellspacing="3px" >
+        <thead>
+          <tr class="none">
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Mensaje</th>
+            <th>IP</th>
+            <th>Fecha</th>
+            <th>País</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% contactos.forEach(contacto => { %>
+            <tr class="none" >   
+             <td><%= contacto.email %></td>
+             <td><%= contacto.name %></td>
+             <td><%= contacto.mensaje %></td>
+             <td><%= contacto.ip %></td>
+             <td><%= contacto.fecha %></td>
+             <td><%= contacto.pais %></td>
+            </tr>
+	   <% }) %>
+        </tbody>
+      </table>
+    </body>
+    </html>

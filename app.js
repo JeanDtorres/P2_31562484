@@ -1,14 +1,30 @@
-require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require('dotenv').config()
+
+const passport = require('passport');
+const session = require('express-session' );
+const LocalStrategy = require('passport-local').Strategy;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+
 var app = express();
+
+app.use(cookieParser( 'mi hiper secreto'));
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,}));
+
+//require('./passport')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 /* const db = require('./conf/db'); */
 const ContactosController = require('./controllers/ContactosController');
@@ -26,6 +42,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.get('/auth/google',passport.authenticate('google', {scope: ['profile'] }));
+app.route("/auth/google/Contactos")
+  .get (passport.authenticate('google', {failureRedirect: "/Login" }),
+    function (req, res) {
+       res.redirect("/Contactos");
+    });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

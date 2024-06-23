@@ -148,3 +148,60 @@ div h3.let{
 
 
 
+.contactos{
+ 
+  color: rgb(0, 0, 0);
+  text-align: center;
+ 
+  
+}
+
+.title-contactos{
+  text-align: center;
+  color: aliceblue;
+  border-style: inset;
+ 
+}
+
+.none{
+
+  background-image: url('../images/og.png');
+}
+
+.frodo{
+  font-family: "Montserrat", sans-serif;
+
+  text-decoration: underline;
+  text-decoration-color: #947651;
+  letter-spacing: 1px;
+
+
+
+}
+
+div .boor{
+position: relative;
+bottom: auto;
+left: 410px;
+top: 300px;
+
+
+}
+
+.llogin{
+
+  background-image: url('../images/og.png');
+  border-width: 5px;
+  background-repeat: no-repeat;
+  position:absolute;
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: 40px;
+  border-style: inset;
+  border-width: 5px;
+  border-color: #947651;
+  text-align: center;
+  right: 564px;
+  color: aliceblue;
+
+}
